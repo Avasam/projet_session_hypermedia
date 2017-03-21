@@ -24,4 +24,4 @@
 8. Identifier les différents écrans et les éléments composant les interfaces.
 9. Commencer le codage et l’implémentation de l’interface (HTML 5 et CSS 3 ou, de préférence, Bootstrap ou équivalent).
 
-![Diagramme Entité-Relation](https://raw.githubusercontent.com/Avasam/projet_session_hypermedia/Samuel/ERD.png)
+![Diagramme Entité-Relation](https://raw.githubusercontent.com/Avasam/projet_session_hypermedia/master/ERD/ERD.png)
