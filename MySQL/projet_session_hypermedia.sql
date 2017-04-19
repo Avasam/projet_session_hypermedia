@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 21 Mars 2017 à 18:22
+-- Généré le :  Mar 18 Avril 2017 à 19:52
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -40,6 +40,19 @@ CREATE TABLE `categorie` (
 --
 
 TRUNCATE TABLE `categorie`;
+--
+-- Contenu de la table `categorie`
+--
+
+INSERT INTO `categorie` (`nom`) VALUES
+('Boissons'),
+('Fruits et légumes'),
+('Pain et céréales'),
+('Pâtes'),
+('Produits laitiers'),
+('Sucreries et collations'),
+('Viandes');
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +64,7 @@ CREATE TABLE `client` (
   `no_client` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `courriel` varchar(254) NOT NULL,
+  `mot_de_passe` varchar(255) NOT NULL,
   `administrateur` tinyint(1) NOT NULL DEFAULT '0',
   `panier` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -68,6 +82,15 @@ CREATE TABLE `client` (
 --
 
 TRUNCATE TABLE `client`;
+--
+-- Contenu de la table `client`
+--
+
+INSERT INTO `client` (`no_client`, `nom`, `courriel`, `mot_de_passe`, `administrateur`, `panier`) VALUES
+(1, 'Samuel Therrien', 'samuel.06@hotmail.com', 'admin123', 1, NULL),
+(2, 'Patrik Artur ', 'artur@gmail.com', 'admin123', 1, NULL),
+(3, 'Generic Bob ', 'bob@gmail.com', 'password', 0, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -89,6 +112,14 @@ CREATE TABLE `commande` (
 --
 
 TRUNCATE TABLE `commande`;
+--
+-- Contenu de la table `commande`
+--
+
+INSERT INTO `commande` (`no_commande`, `paiement`) VALUES
+(1, '2017-04-18'),
+(2, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -120,6 +151,17 @@ CREATE TABLE `produit` (
 --
 
 TRUNCATE TABLE `produit`;
+--
+-- Contenu de la table `produit`
+--
+
+INSERT INTO `produit` (`no_produit`, `nom`, `prix`, `rabais_pct`, `rabais_abs`, `description`, `image`, `categorie`) VALUES
+(16, 'Lait Natrel 3%', '2.00', 0, '0.00', 'Du lait à 3% de Natrel', 'natrel3.png', 'Produits laitiers'),
+(17, 'Brownies', '3.50', 2, '0.00', 'Délicieux petits gâteaux au chocolat.', 'brownie.png', 'Sucreries et collations'),
+(18, 'Jus d\'orange Tropicana', '2.25', 0, '0.50', 'Jus d\'Orange à 100% (sans pulpes)', 'orangetropicana.png', 'Boissons'),
+(19, 'Froot Loops', '4.00', 1, '1.00', 'Froot Loops TM', 'frootloops.png', NULL),
+(20, 'Barre Mars', '1.19', 0, '0.00', NULL, '', 'Sucreries et collations');
+
 -- --------------------------------------------------------
 
 --
@@ -149,6 +191,17 @@ CREATE TABLE `produit_commande` (
 --
 
 TRUNCATE TABLE `produit_commande`;
+--
+-- Contenu de la table `produit_commande`
+--
+
+INSERT INTO `produit_commande` (`no_commande`, `no_produit`) VALUES
+(1, 16),
+(2, 16),
+(2, 17),
+(2, 18),
+(1, 19);
+
 -- --------------------------------------------------------
 
 --
@@ -178,6 +231,14 @@ CREATE TABLE `produit_favoris` (
 --
 
 TRUNCATE TABLE `produit_favoris`;
+--
+-- Contenu de la table `produit_favoris`
+--
+
+INSERT INTO `produit_favoris` (`no_client`, `no_produit`) VALUES
+(3, 17),
+(3, 20);
+
 --
 -- Index pour les tables exportées
 --
@@ -230,17 +291,17 @@ ALTER TABLE `produit_favoris`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `no_client` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `no_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `no_commande` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `no_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `no_produit` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `no_produit` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- Contraintes pour les tables exportées
 --
