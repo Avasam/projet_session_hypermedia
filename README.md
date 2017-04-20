@@ -18,10 +18,9 @@
 2. ~~Identifier les différents acteurs et de quelle(s) façon(s) ils utiliseront le système (c'est-à dire, les fonctionnalités que le système offre à chacun des acteurs).~~
 3. ~~Effectuer la modélisation des données et en déduire le schéma de la base de données (ERD).~~
 4. ~~Créer les tables MySQL.~~
-5. Implémenter la base de données (sous MySQL ou sous un autre SGBD).
+5. ~~Implémenter la base de données (sous MySQL).~~
 6. Créer les classes entités et les DAO.
-7. Faire une esquisse de la page d’accueil et des autres pages, si elles ont un gabarit différent.
-8. Identifier les différents écrans et les éléments composant les interfaces.
-9. Commencer le codage et l’implémentation de l’interface (HTML 5 et CSS 3 ou, de préférence, Bootstrap ou équivalent).
+7. ~~Faire une esquisse de la page d’accueil~~, de connexion, de profil (et d'administration?).
+8. Commencer le codage et l’implémentation de l’interface (HTML 5 et CSS 3 ou, de préférence, Bootstrap ou équivalent).
 
 ![Diagramme Entité-Relation](https://raw.githubusercontent.com/Avasam/projet_session_hypermedia/master/ERD/ERD.png)
