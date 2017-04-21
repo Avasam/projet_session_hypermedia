@@ -1,0 +1,3 @@
+*.bak*
+*.vpp.*
+/nbproject/private/
