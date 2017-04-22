@@ -5,11 +5,11 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-sm-3">
             <?php include_once('/vues/categories.php'); ?>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-sm-9">
             <?php 
             if (ISSET($_REQUEST["produit"])) {
                include_once('/vues/produit.php');
