@@ -34,16 +34,17 @@ if (!ISSET($_SESSION)) {
 ?>
 
 <body>
- 
-    <?php
-    include_once('/vues/main.php');
-    ?>
-
-    <!-- jQuery -->
+     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <?php
+    include_once('/vues/main.php');
+    //<!-- Modal -->
+    include_once('/vues/produitModal.php');
+    ?>
 
 </body>
 

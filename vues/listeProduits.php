@@ -29,7 +29,39 @@
 
 </div>
 
+
+
+
 <div class="row">
+    
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <button type="button" class="btn btn-primary btn-add-product" data-toggle="modal" data-target="#produitModal" data-action="Ajouter"><div class="glyphicon glyphicon-plus"></div></button>
+    </div>
+    
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src='' alt="">
+            <div class="caption">
+                <h4 class="pull-right">$74.99</h4>
+                <h4>
+                    <a href="#">Height test Product</a>
+                    <a href="#"><span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#produitModal" data-action="Modifier"></span></a>
+                </h4>
+                <p>This is a short description.</p>
+            </div>
+            <div class="ratings">
+                <p class="pull-right">31 reviews</p>
+                <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
     <?php
 //    $listeProduits = null;
 //    if (ISSET($_SESSION['categorie']))
@@ -43,7 +75,9 @@
             <img src='images/orangetropicana.jpg' alt="">
             <div class="caption">
                 <h4 class="pull-right">$74.99</h4>
-                <h4><a href="#"><?php echo $i ?>th Product</a>
+                <h4>
+                    <a href="#"><?php echo $i ?>th Product</a>
+                    <a href="#"><span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#produitModal" data-action="Modifier"></span></a>
                 </h4>
                 <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>

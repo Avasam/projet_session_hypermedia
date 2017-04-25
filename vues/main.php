@@ -10,7 +10,7 @@
         </div>
 
         <div class="col-sm-9">
-            <?php 
+            <?php
             if (ISSET($_REQUEST["produit"])) {
                include_once('/vues/produit.php');
             } else {
