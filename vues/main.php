@@ -14,7 +14,7 @@
             if (ISSET($_REQUEST["produit"])) {
                include_once('/vues/produit.php');
             } else {
-               include_once('/vues/listeProduits.php');
+               include_once('/vues/catalogue.php');
             }
             ?>
         </div>

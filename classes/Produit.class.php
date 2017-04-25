@@ -14,7 +14,7 @@ class Produit {
     private $cheminImage = "default.png";
     private $categorie = null;
     
-    function __construct($noProduit, $nom, $prix, $rabaisPct=0, $rabaisAbs=0, $description="", $cheminImage="default.png", $categorie=null) {
+    function __construct($noProduit=null, $nom="", $prix=0.00, $rabaisPct=0, $rabaisAbs=0.00, $description="", $cheminImage=null, $categorie=null) {
         $this->noProduit = $noProduit;
         $this->nom = $nom;
         $this->prix = $prix;
@@ -54,7 +54,7 @@ class Produit {
     }
 
     function getCheminImage() {
-        return $this->cheminImage;
+        return ($this->cheminImage ? $this->cheminImage : "http://placehold.it/800x300");
     }
 
     function getCategorie() {
@@ -87,6 +87,17 @@ class Produit {
 
     function setCategorie($categorie) {
         $this->categorie = $categorie;
+    }
+    
+    function loadFromArray($x) {
+        $this->noProduit = $x["no_produit"];
+        $this->nom = $x["nom"];
+        $this->prix = $x["prix"];
+        $this->rabaisPct = $x["rabais_pct"];
+        $this->rabaisAbs = $x["rabais_abs"];
+        $this->description = $x["description"];
+        $this->cheminImage = $x["image"];
+        $this->categorie = $x["categorie"];
     }
 
     public function __toString() {

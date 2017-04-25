@@ -45,7 +45,7 @@ class Liste {
             return $this->items[$i];
         return null;	
     }
-    public function taille() {
+    public function length() {
         return count($this->items);
     }	
 }

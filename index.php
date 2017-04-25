@@ -41,8 +41,11 @@ if (!ISSET($_SESSION)) {
     <script src="js/bootstrap.min.js"></script>
 
     <?php
+    //<!-- PHP Classes -->
+    include_once('/classes/ProduitDAO.class.php');
+    //<!-- Vues -->
     include_once('/vues/main.php');
-    //<!-- Modal -->
+    //<!-- Modals -->
     include_once('/vues/produitModal.php');
     ?>
 
