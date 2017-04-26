@@ -46,54 +46,79 @@ class ProduitDAO {
             $cnx = null;
             return $liste;
         } catch (PDOException $e) {
-            print "Error!: " . $e->getMessage() . "<br/>";
+            print "Error!: ".$e->getMessage()."<br/>";
             return $liste;
         }
     }
     
     public static function findAllBy($attr, $x) {
+        $liste = new Liste();
         try {
-            $liste = new Liste();
+            if (!in_array($attr, array("no_produit","nom","prix","rabais_pct","rabais_pct","description","image","categorie"))) {
+                throw new PDOException("Colonne invalide: ".(string)$attr);
+            }
+            $cnx = Database::getInstance();
+            $pstmt = $cnx->prepare("SELECT * FROM produit WHERE ".$attr.($x ? " = :x" : " IS NULL"));
+            $pstmt->execute(array(':x' => $x));
+            while ($result=$pstmt->fetch(PDO::FETCH_OBJ)) {
+                $liste->add(new Produit($result->no_produit,
+                                $result->nom,
+                                $result->prix,
+                                $result->rabais_pct,
+                                $result->rabais_pct,
+                                $result->description,
+                                $result->image,
+                                $result->categorie));
+            }
+            $pstmt->closeCursor();
+            Database::close();
+            $cnx = null;
+            return $liste;
+        } catch (PDOException $e) {
+            print "Error!: ".$e->getMessage()."<br/>";
+            return $liste;
+        }	
+    }
+
+    public static function findAllCategories() {
+        $liste = new Liste();
+        try {
+            $requete = 'SELECT DISTINCT categorie FROM produit WHERE categorie IS NOT NULL';
             $cnx = Database::getInstance();
 
-            $pstmt = $cnx->prepare("SELECT * FROM produit WHERE :col = :x");
-            $pstmt->execute(array(':col' => $attr, ':x' => $x));
-            
-            $res = $pstmt->fetch(PDO::FETCH_OBJ);
-            
+            $res = $cnx->query($requete);
             foreach($res as $row) {
-                $p = new Produit();
-                $p->loadFromArray($row);
-                $liste->add($p);
+                $liste->add($row["categorie"]);
             }
+            
             $res->closeCursor();
             Database::close();
             $cnx = null;
             return $liste;
         } catch (PDOException $e) {
-            print "Error!: " . $e->getMessage() . "<br/>";
+            print "Error!: ".$e->getMessage()."<br/>";
             return $liste;
-        }	
+        }
     }
-
+    
     public static function find($id) {
         $db = Database::getInstance();
 
-        $pstmt = $db->prepare("SELECT * FROM produit WHERE NO_PRODUIT = :x");
+        $pstmt = $db->prepare("SELECT * FROM produit WHERE no_produit = :x");
         $pstmt->execute(array(':x' => $id));
 
         $result = $pstmt->fetch(PDO::FETCH_OBJ);
 
         if ($result) {
             $p = new Produit();
-            $p->setNoProduit($result->NO_PRODUIT);
-            $p->setNom($result->NOM);
-            $p->setPrix($result->PRIX);
-            $p->setRabaisPct($result->RABAIS_PCT);
-            $p->setRabaisAbs($result->RABAIS_ABS);
-            $p->setDescription($result->DESCRIPTION);
-            $p->setImage($result->IMAGE);
-            $p->setCategorie($result->CATEGORIE);
+            $p->setNoProduit($result->no_produit);
+            $p->setNom($result->nom);
+            $p->setPrix($result->prix);
+            $p->setRabaisPct($result->rabais_pct);
+            $p->setRabaisAbs($result->rabais_abs);
+            $p->setDescription($result->description);
+            $p->setImage($result->image);
+            $p->setCategorie($result->categorie);
             $pstmt->closeCursor();
             return $p;
         }
@@ -102,14 +127,14 @@ class ProduitDAO {
 }
 
     public function update($x) {
-        $request = "UPDATE produit SET NOM = '".$x->getNom().
-        "', PRIX = '".$x->getPrix().
-        "', RABAIS_PCT = '".$x->getRabaisPct().
-        "', RABAIS_ABS = '".$x->getRabaisAbs().
-        "', DESCRIPTION = '".$x->getDescription().
-        "', IMAGE = '".$x->getImage().
-        "', CATEGORIE = '".$x->getCategorie().
-        " WHERE NO_PRODUIT = '".$x->getNoProduit()."'";
+        $request = "UPDATE produit SET nom = '".$x->getNom().
+        "', prix = '".$x->getPrix().
+        "', rabais_pct = '".$x->getRabaisPct().
+        "', rabais_abs = '".$x->getRabaisAbs().
+        "', description = '".$x->getDescription().
+        "', image = '".$x->getImage().
+        "', categorie = '".$x->getCategorie().
+        " WHERE no_produit = '".$x->getNoProduit()."'";
         try {
             $db = Database::getInstance();
             return $db->exec($request);
@@ -120,7 +145,7 @@ class ProduitDAO {
     }
 
     public function delete($x) {
-        $request = "DELETE FROM produit WHERE NO_PRODUIT = '".$x->getNoProduit()."'";
+        $request = "DELETE FROM produit WHERE no_produit = '".$x->getNoProduit()."'";
         try {
             $db = Database::getInstance();
             return $db->exec($request);

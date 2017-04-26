@@ -39,14 +39,18 @@
     </div>
 
     <?php
-    $listeProduits = null;
     if (ISSET($_SESSION['categorie'])) {
-        $listeProduits = $ProduitDAO->findAllBy('categorie', $_SESSION['categorie']);
+        if ($_SESSION['categorie'] == "Tout") {
+            $listeProduits = ProduitDAO::findAll();
+        } else {
+            $categorie = $_SESSION['categorie'];
+            $listeProduits = ProduitDAO::findAllBy('categorie', $categorie);
+        }
     } else {
-        $listeProduits = ProduitDAO::findAll();
+        $listeProduits = ProduitDAO::findAllBy('categorie', null);
     }
     while ($listeProduits->next()) {
-        $produit = $listeProduits->current()
+        $produit = $listeProduits->current();
         ?>
         <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">

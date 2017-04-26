@@ -1,18 +1,15 @@
-<?php include_once ('/controlers/activeCategorie.php') ?>
+<?php include_once ('/controlers/Categorie.class.php') ?>
 
 <p class="lead">Catégories</p>
 <div class="list-group">
-    <a href="#" class="list-group-item <?php echo activeCategorie("Tout") ?>">Tout afficher</a>
+    <a href="#" class="list-group-item <?php echo Categorie::CSSActiveCategorie("Tout") ?>">Tout afficher</a>
     <?php
-    //    $listeProduits = null;
-    //    if (ISSET($_SESSIONI['categorie']))
-    //        $listeProduits = $produitDAO.findByCategorie($_SESSION['categorie']);
-    //    else
-    //        $listeProduits = $produitDAO.findAll();
-    for ($i = 1; $i <= 7; $i++) {
-    ?>
+    $listeCategories = ProduitDAO::findAllCategories();
+    while ($listeCategories->next()) {
+        $categorie = $listeCategories->current();
 
-    <a href="#" class="list-group-item <?php echo activeCategorie("Catégorie ".$i) ?>">Category <?php echo $i ?></a>
+        ?>
+        <a href="#" class="list-group-item <?php echo Categorie::CSSActiveCategorie($categorie) ?>"><?php echo $categorie ?></a>
     <?php } ?>
-    <a href="#" class="list-group-item <?php echo activeCategorie(null) ?>">Non catégorisé</a>
+    <a href="#" class="list-group-item <?php echo Categorie::CSSActiveCategorie(null) ?>">Non catégorisé</a>
 </div>    

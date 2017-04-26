@@ -29,7 +29,7 @@
 <?php
 if (!ISSET($_SESSION)) {
     session_start();
-    $_SESSION["categorie"] = null;
+    $_SESSION["categorie"] = "Tout";
 }
 ?>
 
