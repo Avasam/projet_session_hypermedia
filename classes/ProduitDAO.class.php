@@ -29,21 +29,20 @@ class ProduitDAO {
     }
 
     public static function findAll() {
+        $liste = new Liste();
         try {
-            $liste = new Liste();
-            
             $requete = 'SELECT * FROM produit';
-            $cnx = Database::getInstance();
+            $db = Database::getInstance();
 
-            $res = $cnx->query($requete);
-            foreach($res as $row) {
+            $result = $db->query($requete);
+            foreach($result as $row) {
                 $p = new Produit();
                 $p->loadFromArray($row);
                 $liste->add($p);
             }
-            $res->closeCursor();
+            $result->closeCursor();
             Database::close();
-            $cnx = null;
+            $db = null;
             return $liste;
         } catch (PDOException $e) {
             print "Error!: ".$e->getMessage()."<br/>";
@@ -57,8 +56,8 @@ class ProduitDAO {
             if (!in_array($attr, array("no_produit","nom","prix","rabais_pct","rabais_pct","description","image","categorie"))) {
                 throw new PDOException("Colonne invalide: ".(string)$attr);
             }
-            $cnx = Database::getInstance();
-            $pstmt = $cnx->prepare("SELECT * FROM produit WHERE ".$attr.($x ? " = :x" : " IS NULL"));
+            $db = Database::getInstance();
+            $pstmt = $db->prepare("SELECT * FROM produit WHERE ".$attr.($x ? " = :x" : " IS NULL"));
             $pstmt->execute(array(':x' => $x));
             while ($result=$pstmt->fetch(PDO::FETCH_OBJ)) {
                 $liste->add(new Produit($result->no_produit,
@@ -72,7 +71,7 @@ class ProduitDAO {
             }
             $pstmt->closeCursor();
             Database::close();
-            $cnx = null;
+            $db = null;
             return $liste;
         } catch (PDOException $e) {
             print "Error!: ".$e->getMessage()."<br/>";
@@ -84,16 +83,37 @@ class ProduitDAO {
         $liste = new Liste();
         try {
             $requete = 'SELECT DISTINCT categorie FROM produit WHERE categorie IS NOT NULL';
-            $cnx = Database::getInstance();
+            $db = Database::getInstance();
 
-            $res = $cnx->query($requete);
-            foreach($res as $row) {
+            $result = $db->query($requete);
+            foreach($result as $row) {
                 $liste->add($row["categorie"]);
             }
             
-            $res->closeCursor();
+            $result->closeCursor();
             Database::close();
-            $cnx = null;
+            $db = null;
+            return $liste;
+        } catch (PDOException $e) {
+            print "Error!: ".$e->getMessage()."<br/>";
+            return $liste;
+        }
+    }
+    
+    public static function findAllBySpecial() {
+        $liste = new Liste();
+        try {
+            $requete = 'SELECT DISTINCT categorie FROM produit WHERE categorie IS NOT NULL';
+            $db = Database::getInstance();
+
+            $result = $db->query($requete);
+            foreach($result as $row) {
+                $liste->add($row["categorie"]);
+            }
+            
+            $result->closeCursor();
+            Database::close();
+            $db = null;
             return $liste;
         } catch (PDOException $e) {
             print "Error!: ".$e->getMessage()."<br/>";
