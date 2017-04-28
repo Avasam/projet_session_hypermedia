@@ -51,7 +51,7 @@
             $listeProduits = ProduitDAO::findAllBy('categorie', $categorie);
         }
     } else {
-        $listeProduits = ProduitDAO::findAllBy('categorie', null);
+        $listeProduits = ProduitDAO::findAll();
     }
     while ($listeProduits->next()) {
         $produit = $listeProduits->current();
