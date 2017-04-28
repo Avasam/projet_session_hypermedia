@@ -1,19 +1,17 @@
 <?php
 class Categorie {
+
     public static function CSSActiveCategorie($categorie) {
-        if (ISSET($_SESSION['categorie'])) {
-            if ($_SESSION['categorie'] == $categorie) {
+        if (ISSET($_REQUEST['categorie'])) {
+            if ($_REQUEST['categorie'] == $categorie) {
                 return "active";
             }
         } else {
-            if ($categorie == null) {
+            if ($categorie == "Tout") {
                 return "active";
             }
         }
         return "";
     }
 
-    public static function setActiveCategorie($categorie) {
-        $_SESSION['categorie'] = $categorie;
-    }
 }

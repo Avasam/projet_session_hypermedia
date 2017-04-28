@@ -1,34 +1,36 @@
 <div class="row carousel-holder">
 
     <div class="col-md-12">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <div id="carousel-produit-special" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <?php 
+                $listeProduits = ProduitDAO::findAllBySpecial();
+                for ($i=0; $i<$listeProduits->length(); $i++) {
+                    ?>
+                    <li data-target="#carousel-produit-special" data-slide-to="<?php echo $i ?>" class="<?php echo($i==0 ? "active" : "") ?>"></li>
+                <?php } ?>
             </ol>
             <div class="carousel-inner">
-                <div class="item active">
-                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                <?php
+                for ($i=0; $i<$listeProduits->length(); $i++) {
+                    $produit = $listeProduits->get($i);
+                    ?>
+                <div class="item <?php echo($i==0 ? "active" : "") ?>">
+                    <img class="slide-image" src="<?php echo $produit->getCheminImage() ?>" alt="">
+                    <span><?php echo $produit->getNom() ?></span><span class="pull-right coupe"><?php echo $produit->getprix() ?>$</span><span class="pull-right rabais"><?php echo $produit->getPrixRabais() ?>$&nbsp;</span>
                 </div>
-                <div class="item">
-                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                </div>
-                <div class="item">
-                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                </div>
+                <?php } ?>
             </div>
-            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <a class="left carousel-control" href="#carousel-produit-special" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
-            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <a class="right carousel-control" href="#carousel-produit-special" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
         </div>
     </div>
 
 </div>
-
 
 
 
@@ -39,11 +41,13 @@
     </div>
 
     <?php
-    if (ISSET($_SESSION['categorie'])) {
-        if ($_SESSION['categorie'] == "Tout") {
+    if (ISSET($_REQUEST['categorie'])) {
+        if ($_REQUEST['categorie'] == "Tout") {
             $listeProduits = ProduitDAO::findAll();
+        } elseif ($_REQUEST['categorie'] == "Special") {
+            $listeProduits = ProduitDAO::findAllBySpecial();
         } else {
-            $categorie = $_SESSION['categorie'];
+            $categorie = $_REQUEST['categorie'];
             $listeProduits = ProduitDAO::findAllBy('categorie', $categorie);
         }
     } else {

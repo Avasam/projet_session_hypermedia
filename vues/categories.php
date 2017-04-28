@@ -2,14 +2,14 @@
 
 <p class="lead">Catégories</p>
 <div class="list-group">
-    <a href="#" class="list-group-item <?php echo Categorie::CSSActiveCategorie("Tout") ?>">Tout afficher</a>
+    <a href="?categorie=Tout" class="list-group-item <?php echo Categorie::CSSActiveCategorie("Tout") ?>">Tout afficher</a>
     <?php
     $listeCategories = ProduitDAO::findAllCategories();
     while ($listeCategories->next()) {
         $categorie = $listeCategories->current();
-
         ?>
-        <a href="#" class="list-group-item <?php echo Categorie::CSSActiveCategorie($categorie) ?>"><?php echo $categorie ?></a>
+        <a href="?categorie=<?php echo $categorie ?>" class="list-group-item <?php echo Categorie::CSSActiveCategorie($categorie) ?>">• <?php echo $categorie ?></a>
     <?php } ?>
-    <a href="#" class="list-group-item <?php echo Categorie::CSSActiveCategorie(null) ?>">Non catégorisé</a>
+    <a href="?categorie=" class="list-group-item <?php echo Categorie::CSSActiveCategorie(null) ?>">• Non catégorisés</a>
+    <a href="?categorie=Special" class="list-group-item <?php echo Categorie::CSSActiveCategorie("Special") ?>">En special</a>
 </div>    

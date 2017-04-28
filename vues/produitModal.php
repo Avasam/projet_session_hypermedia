@@ -51,7 +51,7 @@
                     
                     <div class="form-group">
                         <label for="1">Description: </label>
-                        <textarea class="form-control" rows="3" id="produitDescription" placeholder="*this should be multilines*"></textarea>
+                        <textarea class="form-control" rows="3" id="produitDescription" placeholder="Description complète du produit."></textarea>
                     </div>
                     
                 </form>

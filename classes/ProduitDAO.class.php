@@ -50,14 +50,14 @@ class ProduitDAO {
         }
     }
     
-    public static function findAllBy($attr, $x) {
+    public static function findAllBy($col, $x) {
         $liste = new Liste();
         try {
-            if (!in_array($attr, array("no_produit","nom","prix","rabais_pct","rabais_pct","description","image","categorie"))) {
-                throw new PDOException("Colonne invalide: ".(string)$attr);
+            if (!in_array($col, array("no_produit","nom","prix","rabais_pct","rabais_pct","description","image","categorie"))) {
+                throw new PDOException("Colonne invalide: ".(string)$col);
             }
             $db = Database::getInstance();
-            $pstmt = $db->prepare("SELECT * FROM produit WHERE ".$attr.($x ? " = :x" : " IS NULL"));
+            $pstmt = $db->prepare("SELECT * FROM produit WHERE ".$col.($x ? " = :x" : " IS NULL"));
             $pstmt->execute(array(':x' => $x));
             while ($result=$pstmt->fetch(PDO::FETCH_OBJ)) {
                 $liste->add(new Produit($result->no_produit,
@@ -103,14 +103,15 @@ class ProduitDAO {
     public static function findAllBySpecial() {
         $liste = new Liste();
         try {
-            $requete = 'SELECT DISTINCT categorie FROM produit WHERE categorie IS NOT NULL';
+            $requete = 'SELECT * FROM produit WHERE rabais_abs>0 OR rabais_pct>0';
             $db = Database::getInstance();
 
             $result = $db->query($requete);
             foreach($result as $row) {
-                $liste->add($row["categorie"]);
+                $p = new Produit();
+                $p->loadFromArray($row);
+                $liste->add($p);
             }
-            
             $result->closeCursor();
             Database::close();
             $db = null;
@@ -128,7 +129,6 @@ class ProduitDAO {
         $pstmt->execute(array(':x' => $id));
 
         $result = $pstmt->fetch(PDO::FETCH_OBJ);
-
         if ($result) {
             $p = new Produit();
             $p->setNoProduit($result->no_produit);
