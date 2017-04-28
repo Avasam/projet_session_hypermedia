@@ -16,8 +16,9 @@
                     $produit = $listeProduits->get($i);
                     ?>
                 <div class="item <?php echo($i==0 ? "active" : "") ?>">
-                    <img class="slide-image" src="<?php echo $produit->getCheminImage() ?>" alt="">
-                    <span><?php echo $produit->getNom() ?></span><span class="pull-right coupe"><?php echo $produit->getprix() ?>$</span><span class="pull-right rabais"><?php echo $produit->getPrixRabais() ?>$&nbsp;</span>
+                    <a href="?produit=<?php echo $produit->getNoProduit() ?>"><img class="slide-image" src="<?php echo $produit->getCheminImage() ?>" alt="<?php echo $produit->getCheminImage() ?>"></a>
+                    <span class="carousel-info-nom"><span><?php echo $produit->getNom() ?></span></span>
+                    <span class="carousel-info-prix"><span class="pull-right coupe"><?php echo $produit->getprix() ?>$</span><span class="pull-right rabais"><?php echo $produit->getPrixRabais() ?>$&nbsp;</span></span>
                 </div>
                 <?php } ?>
             </div>
@@ -58,11 +59,11 @@
         ?>
         <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
-                <img src='<?php echo $produit->getCheminImage() ?>' alt="">
+                <a href="?produit=<?php echo $produit->getNoProduit() ?>"><img src='<?php echo $produit->getCheminImage() ?>' alt="<?php echo $produit->getCheminImage() ?>"></a>
                 <div class="caption">
                     <h4 class="pull-right"><?php echo number_format((float)$produit->getPrixRabais(),2,'.',''); ?>$</h4>
                     <h4>
-                        <a href="#"><?php echo $produit->getNom() ?></a>
+                        <a href="?produit=<?php echo $produit->getNoProduit() ?>"><?php echo $produit->getNom() ?></a>
                         <a href="#"><span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#produitModal" data-action="Modifier"></span></a>
                     </h4>
                     <p><?php echo html_entity_decode($produit->getDescription()); ?></p>

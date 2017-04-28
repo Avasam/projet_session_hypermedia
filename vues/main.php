@@ -11,10 +11,10 @@
 
         <div class="col-sm-9">
             <?php
-            if (ISSET($_REQUEST["produit"])) {
-               include_once('/vues/produit.php');
+            if (ISSET($_REQUEST["produit"]) && $_REQUEST["produit"]!=null) {
+                include_once('/vues/produit.php');
             } else {
-               include_once('/vues/catalogue.php');
+                include_once('/vues/catalogue.php');
             }
             ?>
         </div>

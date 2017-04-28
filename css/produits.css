@@ -27,6 +27,14 @@ body {
     font-size: 150%;
 }
 
+.carousel-indicators li {
+    border-color: lightgrey;
+}
+
+.carousel-indicators .active {
+    background-color: lightgrey;
+}
+
 .caption {
     height: 130px;
     overflow: hidden;
@@ -87,6 +95,20 @@ footer {
 
 textarea {
     resize: vertical;
+}
+
+.carousel-info-nom,
+.carousel-info-prix {
+    position: absolute;
+    bottom: 0;
+}
+
+.carousel-info-nom{
+    left: 1%;
+}
+
+.carousel-info-prix{
+    right: 1%;
 }
 
 .rabais {
