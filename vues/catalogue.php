@@ -64,7 +64,18 @@
                     <h4 class="pull-right"><?php echo number_format((float)$produit->getPrixRabais(),2,'.',''); ?>$</h4>
                     <h4>
                         <a href="?produit=<?php echo $produit->getNoProduit() ?>"><?php echo $produit->getNom() ?></a>
-                        <a href="#"><span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#produitModal" data-action="Modifier"></span></a>
+                        <a href="#"><span class="glyphicon glyphicon-edit" data-toggle="modal"
+                                                                           data-target="#produitModal"
+                                                                           data-action="Modifier"
+                                                                           data-no-produit="<?php echo $produit->getNoProduit() ?>"
+                                                                           data-nom="<?php echo $produit->getNom() ?>"
+                                                                           data-prix="<?php echo $produit->getPrix() ?>"
+                                                                           data-rabais-pct="<?php echo $produit->getRabaisPct() ?>"
+                                                                           data-rabais-abs="<?php echo $produit->getRabaisAbs() ?>"
+                                                                           data-description="<?php echo $produit->getdescription() ?>"
+                                                                           data-chemin-image="<?php echo $produit->getCheminImage() ?>"
+                                                                           data-categorie="<?php echo $produit->getCategorie() ?>"
+                         ></span></a>
                     </h4>
                     <p><?php echo html_entity_decode($produit->getDescription()); ?></p>
                 </div>
