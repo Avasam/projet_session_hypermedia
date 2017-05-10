@@ -8,6 +8,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><span class="value"></span> un produit:</h4>
             </div>
+
             <div class="modal-body">
                 <form>
                     <input type="hidden" class="form-control" id="produitID" value="0">
@@ -41,19 +42,37 @@
                         <label for="produitRabaisPct">Rabais %: </label>
                         <input type="text" class="form-control" id="produitRabaisPct" placeholder="0">
                     </div>
-                    
-                    <div class="row">
-                        <div class="form-group col-xs-4"> 
-                            <label for="1">Prix: </label>
-                            <input type="text" class="form-control" id="produitPrix" placeholder="0.00">
-                        </div>
-                        <div class="form-group col-xs-4"> 
-                            <label for="1">Rabais $: </label>
-                            <input type="text" class="form-control" id="produitRabaisAbs" placeholder="0.00">
-                        </div>
-                        <div class="form-group col-xs-4"> 
-                            <label for="1">Rabais %: </label>
-                            <input type="text" class="form-control" id="produitRabaisPct" placeholder="0">
+
+                    <!-- Image Uploader -->
+                    <div class="form-group col-xs-6"> 
+                        <label for="cheminImageUpload">Image: </label>
+                        <div class="imageupload panel panel-default" id="cheminImageUpload">
+                            <div class="panel-heading clearfix">
+                                <h3 class="panel-title pull-left">Télécharger de</h3>
+                                <div class="btn-group pull-right">
+                                    <button type="button" class="btn btn-default active">Fichier</button>
+                                    <button type="button" class="btn btn-default">URL</button>
+                                </div>
+                            </div>
+                            <div class="file-tab panel-body">
+                                <label class="btn btn-default btn-file">
+                                    <span>Browse</span>
+                                    <!-- The file is stored here. -->
+                                    <input type="file" name="image-file">
+                                </label>
+                                <button type="button" class="btn btn-default">Remove</button>
+                            </div>
+                            <div class="url-tab panel-body">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Image URL">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default">Submit</button>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-default">Remove</button>
+                                <!-- The URL is stored here. -->
+                                <input type="hidden" name="image-url">
+                            </div>
                         </div>
                     </div>
                     
@@ -64,12 +83,14 @@
                     
                 </form>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger pull-left" id="btnSupprimer">Supprimer <span class="produit"></span></button>
                 <button type="button" class="btn btn-primary" id="btnModifier">Modifier</button>
                 <button type="button" class="btn btn-primary" id="btnAjouter">Ajouter</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
             </div>
+
         </div>
 
     </div>

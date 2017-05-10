@@ -13,6 +13,9 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Imageupload CSS -->
+    <link href="css/bootstrap-imageupload.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/produits.css" rel="stylesheet">
@@ -39,6 +42,9 @@ if (!ISSET($_SESSION)) {
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    
+    <!-- Bootstrap Imageupload JavaScript -->
+    <script src="js/bootstrap-imageupload.js"></script>
 
     <?php
     //<!-- PHP Classes -->
