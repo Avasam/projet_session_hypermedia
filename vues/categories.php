@@ -1,4 +1,4 @@
-<?php include_once ('/controlers/Categorie.class.php') ?>
+<?php include_once ('/controleurs/Categorie.class.php') ?>
 
 <p class="lead">Catégories</p>
 <div class="list-group">

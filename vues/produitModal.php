@@ -10,9 +10,9 @@
             </div>
 
             <div class="modal-body">
-                <form>
+                <form> <div class="row">
                     <input type="hidden" class="form-control" id="produitID" value="0">
-                    
+
                     <div class="form-group col-xs-6"> 
                         <label for="produitNom">Nom: </label>
                         <input type="text" class="form-control" id="produitNom" placeholder="">
@@ -75,13 +75,12 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group col-xs-12">
                         <label for="desription">Description: </label>
                         <textarea class="form-control" rows="3" id="produitDescription" placeholder="Description complète du produit."></textarea>
                     </div>
-                    
-                </form>
+                </div> </form>
             </div>
 
             <div class="modal-footer">
