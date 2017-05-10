@@ -1,4 +1,9 @@
 <?php
+/**
+ * Description of Categorie
+ *
+ * @author Samuel Therrien
+ */
 class Categorie {
 
     public static function CSSActiveCategorie($categorie) {
