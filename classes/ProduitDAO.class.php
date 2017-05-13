@@ -8,7 +8,7 @@ include_once('/classes/Liste.class.php');
  * @author Patrik Artur Kabore Blez
  */
 class ProduitDAO {	
-    public function create($x) {
+    public static function create($x) {
         $request = "INSERT INTO produit (no_produit,nom,prix,rabais_pct,rabais_abs,description,image,categorie)".
                     " VALUES ('".$x->getNoProduit().
                     "','".$x->getNom().
@@ -42,7 +42,6 @@ class ProduitDAO {
             }
             $result->closeCursor();
             Database::close();
-            $db = null;
             return $liste;
         } catch (PDOException $e) {
             print "Error!: ".$e->getMessage()."<br/>";
@@ -71,7 +70,6 @@ class ProduitDAO {
             }
             $pstmt->closeCursor();
             Database::close();
-            $db = null;
             return $liste;
         } catch (PDOException $e) {
             print "Error!: ".$e->getMessage()."<br/>";
@@ -92,7 +90,6 @@ class ProduitDAO {
             
             $result->closeCursor();
             Database::close();
-            $db = null;
             return $liste;
         } catch (PDOException $e) {
             print "Error!: ".$e->getMessage()."<br/>";
@@ -114,7 +111,6 @@ class ProduitDAO {
             }
             $result->closeCursor();
             Database::close();
-            $db = null;
             return $liste;
         } catch (PDOException $e) {
             print "Error!: ".$e->getMessage()."<br/>";
@@ -146,13 +142,13 @@ class ProduitDAO {
         return NULL;
 }
 
-    public function update($x) {
+    public static function update($x) {
         $request = "UPDATE produit SET nom = '".$x->getNom().
         "', prix = '".$x->getPrix().
         "', rabais_pct = '".$x->getRabaisPct().
         "', rabais_abs = '".$x->getRabaisAbs().
         "', description = '".$x->getDescription().
-        "', image = '".$x->getImage().
+        "', image = '".$x->getCheminImage().
         "', categorie = '".$x->getCategorie().
         " WHERE no_produit = '".$x->getNoProduit()."'";
         try {
@@ -164,6 +160,15 @@ class ProduitDAO {
         }
     }
 
+    public static function deleteById($id) {
+        $db = Database::getInstance();
+
+        $pstmt = $db->prepare("DELETE FROM produit WHERE no_produit = :x");
+        $pstmt->execute(array(':x' => $id));
+
+        $pstmt->closeCursor();
+    }
+    
     public function delete($x) {
         $request = "DELETE FROM produit WHERE no_produit = '".$x->getNoProduit()."'";
         try {

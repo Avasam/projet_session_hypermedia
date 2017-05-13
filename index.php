@@ -34,6 +34,13 @@ if (!ISSET($_SESSION)) {
     session_start();
     $_SESSION["categorie"] = "Tout";
 }
+
+include_once('/controleurs/ActionBuilder.class.php');
+if (ISSET($_REQUEST["action"])) {
+    $vue = ActionBuilder::getAction($_REQUEST["action"])->execute();
+} else {
+    $vue = ActionBuilder::getAction("")->execute();
+}
 ?>
 
 <body>
@@ -50,7 +57,9 @@ if (!ISSET($_SESSION)) {
     //<!-- PHP Classes -->
     include_once('/classes/ProduitDAO.class.php');
     //<!-- Vues -->
-    include_once('/vues/main.php');
+    include_once('/vues/navbar.php'); // Navigation
+    include_once('/vues/'.$vue.'.php'); // Vue Principale
+    include_once('/vues/footer.php'); // Footer
     //<!-- Modals -->
     include_once('/vues/produitModal.php');
     ?>

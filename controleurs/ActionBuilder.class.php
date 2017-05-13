@@ -4,32 +4,34 @@
  *
  * @author Amoumene Toudeft
  */
-require_once('./controleur/DefaultAction.class.php');
-require_once('./controleur/AjouterAction.class.php');
-require_once('./controleur/LoginAction.class.php');
-require_once('./controleur/LogoutAction.class.php');
-require_once('./controleur/SupprimerAction.class.php');
+require_once('/controleurs/ActionDefault.class.php');
+require_once('/controleurs/ActionAjouterProduit.class.php');
+//require_once('/controleurs/LoginAction.class.php');
+//require_once('/controleurs/LogoutAction.class.php');
+require_once('/controleurs/ActionModifierProduit.class.php');
+require_once('/controleurs/ActionSupprimerProduit.class.php');
 
 class ActionBuilder{
     public static function getAction($nom){
         switch ($nom) {
-            case "login" :
-                return new LoginAction();
+//            case "login" :
+//                return new LoginAction();
+//            break; 
+//            case "logout" :
+//                return new LogoutAction();
+//            break; 
+            case "ajouterProduit" :
+                return new ActionAjouterProduit();
+            break;
+            case "modifierProduit" :
+                return new ActionModifierProduit();
+            break;
+            case "supprimerProduit" :
+                return new ActionSupprimerProduit();
             break; 
-            case "logout" :
-                return new LogoutAction();
-            break; 
-            case "afficher" :
-                return new AfficherAction();
-            break; 
-            case "ajouter" :
-                return new AjouterAction();
-            break; 
-            case "supprimer" :
-                return new SupprimerAction();
-            break; 
+        
             default :
-                return new DefaultAction();
+                return new ActionDefault();
         }
     }
 }

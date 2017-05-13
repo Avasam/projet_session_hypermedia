@@ -1,6 +1,3 @@
-<!-- Navigation -->
-<?php include_once('/vues/navbar.php'); ?>
-
 <!-- Page Content -->
 <div class="container">
     <div class="row">
@@ -21,6 +18,3 @@
         
     </div>
 </div>
-<!-- /.container -->
-
-<?php include_once('/vues/footer.php'); ?>
