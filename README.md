@@ -10,7 +10,7 @@
 - Peut s’abonner à un produit pour recevoir une notification quand le produit est en spécial.
 
 ### **Administrateur:**
-- Peut ajouter/modifier/supprimer les produits du catalogue.
+- ~~Peut ajouter/modifier/supprimer les produits du catalogue.~~
 - Peut mettre des rabais sur des produits en % ou d’une valeur absolue. 
 
 # Plan de travail initial (donné à titre indicatif) :
@@ -20,7 +20,8 @@
 4. ~~Créer les tables MySQL.~~
 5. ~~Implémenter la base de données (sous MySQL).~~
 6. Créer les classes entités et les DAO.
-7. ~~Faire une esquisse de la page d’accueil~~, de connexion, de profil (et d'administration?).
+7. ~~Faire une esquisse de la page d’accueil~~, de connexion et de profil.
 8. Commencer le codage et l’implémentation de l’interface (HTML 5 et CSS 3 ou, de préférence, Bootstrap ou équivalent).
+9. Effectuer la validation des formulaires.
 
 ![Diagramme Entité-Relation](https://raw.githubusercontent.com/Avasam/projet_session_hypermedia/master/ERD/ERD.png)
