@@ -2,7 +2,7 @@
 /**
  * Description of SupprimerAction
  *
- * @author Amoumene Toudeft
+ * @author Samuel Therrien
  */
 require_once('/controleurs/Action.interface.php');
 require_once('/classes/ProduitDAO.class.php');

@@ -22,6 +22,9 @@
                 <li>
                     <a href="#">Contact</a>
                 </li>
+                <li>
+                    <a href="#"><span data-toggle="modal" data-target="#loginModal">Se connecter/S'enregistrer</span></a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

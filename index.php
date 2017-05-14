@@ -16,6 +16,9 @@
     
     <!-- Bootstrap Imageupload CSS -->
     <link href="css/bootstrap-imageupload.min.css" rel="stylesheet">
+    
+    <!-- khaqanbaloch Login with registration CSS -->
+    <link href="css/khaqanbaloch-login-with-registration.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/produits.css" rel="stylesheet">
@@ -62,6 +65,7 @@ if (ISSET($_REQUEST["action"])) {
     include_once('/vues/footer.php'); // Footer
     //<!-- Modals -->
     include_once('/vues/produitModal.php');
+    include_once('/vues/loginModal.php');
     ?>
 
 </body>

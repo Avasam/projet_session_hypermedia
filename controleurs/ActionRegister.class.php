@@ -4,8 +4,8 @@
  *
  * @author Amoumene Toudeft
  */
-require_once('./controleur/Action.interface.php');
-class LoginAction implements Action {
+require_once('./controleurs/Action.interface.php');
+class ActionRegister implements Action {
     public function execute(){
         if (!ISSET($_REQUEST["username"]))
             return "login";
