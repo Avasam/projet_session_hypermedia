@@ -17,13 +17,12 @@
                     <a href="?action=about">À propos</a>
                 </li>
                 <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
                     <a href="#">Contact</a>
                 </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
                 <?php if (ISSET($_SESSION["connected"])) {
-                    echo "<li><a href='#'>".$_SESSION["connected"]."</a></li>";
+                    echo "<li><a href='?action=profil&username=".$_SESSION["connected"]."'>".$_SESSION["connected"]."</a></li>";
                     echo "<li><a href='?action=logout'>Se déconnecter</a></li>";
                 } else {
                     echo "<li><a href='#'><span data-toggle='modal' data-target='#loginModal'>Se connecter/S'enregistrer</span></a></li>";

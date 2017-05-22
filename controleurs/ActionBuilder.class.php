@@ -12,6 +12,7 @@ require_once('/controleurs/ActionLogout.class.php');
 require_once('/controleurs/ActionModifierProduit.class.php');
 require_once('/controleurs/ActionSupprimerProduit.class.php');
 require_once('/controleurs/ActionAbout.class.php');
+require_once('/controleurs/ActionProfil.class.php');
 
 class ActionBuilder{
     public static function getAction($nom){
@@ -36,6 +37,9 @@ class ActionBuilder{
                 break;
             case "about" :
                 return new ActionAbout();
+                break;
+            case "profil" :
+                return new ActionProfil();
                 break;
             default :
                 return new ActionDefault();

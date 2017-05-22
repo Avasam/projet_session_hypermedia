@@ -10,3 +10,11 @@
 .file-header {
     display: none;
 }
+
+.btn {
+    background-image: none;
+}
+
+.form-group .form-control.btn {
+    background-color: #59B2E0;
+}
