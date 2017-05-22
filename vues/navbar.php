@@ -22,9 +22,12 @@
                 <li>
                     <a href="#">Contact</a>
                 </li>
-                <li>
-                    <a href="#"><span data-toggle="modal" data-target="#loginModal">Se connecter/S'enregistrer</span></a>
-                </li>
+                <?php if (ISSET($_SESSION["connected"])) {
+                    echo "<li><a href='#'>".$_SESSION["connected"]."</a></li>";
+                    echo "<li><a href='?action=logout'>Se déconnecter</a></li>";
+                } else {
+                    echo "<li><a href='#'><span data-toggle='modal' data-target='#loginModal'>Se connecter/S'enregistrer</span></a></li>";
+                } ?>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

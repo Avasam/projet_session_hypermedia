@@ -61,6 +61,12 @@ if (ISSET($_REQUEST["action"])) {
     include_once('/classes/ProduitDAO.class.php');
     //<!-- Vues -->
     include_once('/vues/navbar.php'); // Navigation
+    if (ISSET($_REQUEST["field_messages"]) || ISSET($_REQUEST["global_message"])) { // Message d'erreur
+        echo "<div class='alert alert-danger col-xs-10 col-xs-offset-1' display='text-align: center'>";
+            if (ISSET($_REQUEST["global_message"])) echo $_REQUEST["global_message"];
+            foreach ($_REQUEST["field_messages"] as $message) echo $message;
+        echo "</div>";
+    }
     include_once('/vues/'.$vue.'.php'); // Vue Principale
     include_once('/vues/footer.php'); // Footer
     //<!-- Modals -->

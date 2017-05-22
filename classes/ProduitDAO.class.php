@@ -9,9 +9,8 @@ include_once('/classes/Liste.class.php');
  */
 class ProduitDAO {	
     public static function create($x) {
-        $request = "INSERT INTO produit (no_produit,nom,prix,rabais_pct,rabais_abs,description,image,categorie)".
-                    " VALUES ('".$x->getNoProduit().
-                    "','".$x->getNom().
+        $request = "INSERT INTO produit (nom,prix,rabais_pct,rabais_abs,description,image,categorie)".
+                    " VALUES ('".$x->getNom().
                     "','".$x->getPrix().
                     "','".$x->getRabaisPct().
                     "','".$x->getRabaisAbs().

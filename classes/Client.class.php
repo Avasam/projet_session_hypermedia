@@ -7,66 +7,106 @@ include_once('/classes/Commande.class.php');
  */
 class Client {
     private $noClient = 0 ;
-    private $nom = "";
+    private $username = "";
     private $courriel = "";
-    private $motDePasse = "";
+    private $password = "";
     private $administrateur = false;
-    private $panier;
+    private $noPanier;
     
-    function __construct($noClient, $nom, $courriel, $motDePasse, $administrateur, $panier) {
+    function __construct($noClient=null, $username="", $courriel="", $password="", $administrateur=false, $noPanier=null) {
         $this->noClient = $noClient;
-        $this->nom = $nom;
+        $this->username = $username;
         $this->courriel = $courriel;
-        $this->motDePasse = $motDePasse;
-        $this->administrateur = $administrateur;
-        //listeProduits = array()
-        //remplir la liste avec les produits de la commande liée à l'utilisateur
-        //$this->panier = = new Commande();
+        $this->password = $password;
+        switch ($administrateur) {
+            case true:
+                $this->administrateur = true;
+                break;
+            case 1:
+                $this->administrateur = true;
+                break;
+            case "1":
+                $this->administrateur = true;
+                break;
+            default:
+                $this->administrateur = false;
+                break;
+        }
+        $this->noPanier = $noPanier;
     }
     function getNoClient() {
         return $this->noClient;
     }
 
-    function getNom() {
-        return $this->nom;
+    function getUsername() {
+        return $this->username;
     }
 
     function getCourriel() {
         return $this->courriel;
     }
 
-    function getMotDePasse() {
-        return $this->motDePasse;
+    function getPassword() {
+        return $this->password;
     }
 
-    function getAdministrateur() {
+    function isAdministrateur() {
         return $this->administrateur;
     }
 
-    function getPanier() {
-        return $this->panier;
+    function getNoPanier() {
+        return $this->noPanier;
     }
 
-    function setNom($nom) {
-        $this->nom = $nom;
+    function setUsername($username) {
+        $this->username = $username;
     }
 
     function setCourriel($courriel) {
         $this->courriel = $courriel;
     }
 
-    function setMotDePasse($motDePasse) {
-        $this->motDePasse = $motDePasse;
+    function setPassword($password) {
+        $this->password = $password;
     }
 
     function setAdministrateur($administrateur) {
-        $this->administrateur = $administrateur;
+        switch ($administrateur) {
+            case true:
+                $this->administrateur = true;
+                break;
+            case 1:
+                $this->administrateur = true;
+                break;
+            case "1":
+                $this->administrateur = true;
+                break;
+            default:
+                $this->administrateur = false;
+                break;
+        }
     }
 
+    function setNoPanier($noPanier) {
+        $this->noPanier=$noPanier;
+    }
+    
     function viderPanier() {
-        $this->panier = null;
+        // TODO: actually wipe out the array that's linked to this ID
+        $this->noPanier = null;
+    }
+    
+    public function __toString() {
+        return $this->username;
+    }
+    
+    public function affiche() {
+        echo $this->__toString();
     }
 
-
+    public function loadFromRecord($ligne) {
+        $this->username = $ligne["NUMID"];
+        $this->password = $ligne["MDP"];
+    }	
 
 }

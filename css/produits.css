@@ -126,3 +126,7 @@ textarea {
 #btnAjouter{
     display: none;
 }
+
+.alert {
+    text-align: center;
+}

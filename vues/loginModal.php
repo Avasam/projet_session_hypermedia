@@ -70,10 +70,10 @@ $(function() {
 
     $('#login-form-link').click(function(e) {
         $("#login-form").delay(100).fadeIn(100);
-            $("#register-form").fadeOut(100);
-            $('#register-form-link').removeClass('active');
-            $(this).addClass('active');
-            e.preventDefault();
+        $("#register-form").fadeOut(100);
+        $('#register-form-link').removeClass('active');
+        $(this).addClass('active');
+        e.preventDefault();
     });
     $('#register-form-link').click(function(e) {
         $("#register-form").delay(100).fadeIn(100);
@@ -84,38 +84,4 @@ $(function() {
     });
 
 });
-//$('#produitModal').on('show.bs.modal', function(e) {
-//    var action = e.relatedTarget.dataset.action;
-//    var produit = e.relatedTarget.dataset.nom;
-//    console.log(action);
-//    console.log(produit);
-//    $(".value").html(action);
-//    $(".produit").html(produit);
-//
-//    if (action==="Modifier") {
-//        document.getElementById("produitID").value = e.relatedTarget.dataset.noProduit;
-//        document.getElementById("produitNom").value = produit;
-//        document.getElementById("produitCategorie").value = e.relatedTarget.dataset.categorie;
-//        $('#cheminImageUpload').imageupload('reset');
-//        document.getElementById("produitPrix").value = e.relatedTarget.dataset.prix;
-//        document.getElementById("produitRabaisAbs").value = e.relatedTarget.dataset.rabaisAbs;
-//        document.getElementById("produitRabaisPct").value = e.relatedTarget.dataset.rabaisPct;
-//        document.getElementById("produitDescription").value = e.relatedTarget.dataset.description;
-//        document.getElementById("btnSupprimer").style.display = "initial";
-//        document.getElementById("btnModifier").style.display = "initial";
-//        document.getElementById("btnAjouter").style.display = "none";
-//    } else {
-//        document.getElementById("produitID").value = null;
-//        document.getElementById("produitNom").value = null;
-//        document.getElementById("produitCategorie").value = null;
-//        $('#cheminImageUpload').imageupload('reset');
-//        document.getElementById("produitPrix").value = null;
-//        document.getElementById("produitRabaisAbs").value = null;
-//        document.getElementById("produitRabaisPct").value = null;
-//        document.getElementById("produitDescription").value = null;
-//        document.getElementById("btnSupprimer").style.display = "none";
-//        document.getElementById("btnModifier").style.display = "none";
-//        document.getElementById("btnAjouter").style.display = "initial";
-//    }
-//});
 </script>
