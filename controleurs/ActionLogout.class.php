@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of LogoutAction
+ * Description of ActionLogout
  *
  * @author Amoumene Toudeft
  */

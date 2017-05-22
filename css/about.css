@@ -1,0 +1,12 @@
+/* 
+    Created on : 2017-05-22, 17:34:44
+    Author     : Avasam
+*/
+
+.commit-tease,
+.pagehead,
+.site-header,
+.file-navigation,
+.file-header {
+    display: none;
+}

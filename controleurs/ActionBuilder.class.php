@@ -11,28 +11,32 @@ require_once('/controleurs/ActionRegister.class.php');
 require_once('/controleurs/ActionLogout.class.php');
 require_once('/controleurs/ActionModifierProduit.class.php');
 require_once('/controleurs/ActionSupprimerProduit.class.php');
+require_once('/controleurs/ActionAbout.class.php');
 
 class ActionBuilder{
     public static function getAction($nom){
         switch ($nom) {
             case "login" :
                 return new ActionLogin();
-            break;
+                break;
             case "register" :
                 return new ActionRegister();
-            break; 
+                break; 
             case "logout" :
                 return new ActionLogout();
-            break; 
+                break; 
             case "ajouterProduit" :
                 return new ActionAjouterProduit();
-            break;
+                break;
             case "modifierProduit" :
                 return new ActionModifierProduit();
-            break;
+                break;
             case "supprimerProduit" :
                 return new ActionSupprimerProduit();
-            break;
+                break;
+            case "about" :
+                return new ActionAbout();
+                break;
             default :
                 return new ActionDefault();
         }
