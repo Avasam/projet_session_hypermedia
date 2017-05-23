@@ -33,11 +33,11 @@
                             <br>
 
                             <label for="produitPrix">Prix: </label>
-                            <input type="number" class="form-control" name="produitPrix" id="produitPrix" placeholder="0.00" required>
+                            <input type="number" step="0.01" class="form-control" name="produitPrix" id="produitPrix" placeholder="0.00" required>
                             <br>
 
                             <label for="produitRabaisAbs">Rabais $: </label>
-                            <input type="number" class="form-control" name="produitRabaisAbs" id="produitRabaisAbs" placeholder="0.00" required>
+                            <input type="number" step="0.01" class="form-control" name="produitRabaisAbs" id="produitRabaisAbs" placeholder="0.00" required>
                             <br>
 
                             <label for="produitRabaisPct">Rabais %: </label>

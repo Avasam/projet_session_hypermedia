@@ -49,7 +49,27 @@ class ClientDAO {
             return null;
         } catch (PDOException $e) {
             print "Error!: ".$e->getMessage()."<br/>";
-            return $liste;
+            return null;
         }
-    }	
+    }
+    
+    public static function findAllMailByFavoris($x) {
+        $liste = new Liste();
+        try {
+            $db = Database::getInstance();
+            $pstmt = $db->prepare("SELECT courriel FROM client c "
+                                 ."INNER JOIN produit_favoris p ON c.no_client=p.no_client "
+                                 ."WHERE p.no_produit = :x");
+            $pstmt->execute(array(':x' => $x));
+            while ($result=$pstmt->fetch(PDO::FETCH_OBJ)) {
+                $liste->add($result->courriel);
+            }
+            $pstmt->closeCursor();
+            Database::close();
+            return $liste;
+        } catch (PDOException $e) {
+            print "Error!: ".$e->getMessage()."<br/>";
+            return $liste;
+        }	
+    }
 }

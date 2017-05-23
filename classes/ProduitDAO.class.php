@@ -189,7 +189,7 @@ class ProduitDAO {
             $p->setRabaisPct($result->rabais_pct);
             $p->setRabaisAbs($result->rabais_abs);
             $p->setDescription($result->description);
-            $p->setImage($result->image);
+            $p->setCheminImage($result->image);
             $p->setCategorie($result->categorie);
             $pstmt->closeCursor();
             return $p;
@@ -251,6 +251,10 @@ class ProduitDAO {
     
     public static function decrementproduitCommande($produit, $commande) {
         $quantite = ProduitDAO::findProduitCommandeQuantite($produit,$commande)-1;
+        if ($quantite<=0) {
+            ProduitDAO::deleteProduitCommande($produit, $commande);
+            return;
+        }
         
         $db = Database::getInstance();
         

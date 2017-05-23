@@ -61,6 +61,10 @@ class Produit {
         return $this->categorie;
     }
 
+    function setNoProduit($noProduit) {
+        $this->nom = $noProduit;
+    }
+    
     function setNom($nom) {
         $this->nom = $nom;
     }

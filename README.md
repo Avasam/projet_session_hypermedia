@@ -9,7 +9,7 @@
 - ~~Ce panier est sauvegardé dans son compte jusqu’à temps qu’il commande. Il peux donc se déconnecter et son panier sera tel-quel à sa reconnexion.~~
 - Il peut payer et vider le contenu du panier.
 - ~~Il peux enlever et ajouter des produits à sa liste de favoris.~~
-- Reçoit une notification quand un produit en favoris est en spécial.
+- ~~Reçoit une notification quand un produit en favoris est en spécial.~~
 
 ### **Administrateur:**
 - ~~Peut ajouter/modifier/supprimer les produits du catalogue.~~
