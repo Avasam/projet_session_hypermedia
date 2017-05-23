@@ -5,7 +5,7 @@ include_once('/classes/Liste.class.php');
 /**
  * Description of ProduitDAO
  *
- * @author Patrik Artur Kabore Blez
+ * @author Samuel Therrien
  */
 class ProduitDAO {	
     public static function create($x) {

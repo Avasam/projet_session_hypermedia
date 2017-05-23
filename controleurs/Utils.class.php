@@ -26,6 +26,7 @@ class Utils {
         echo "<div class='alert alert-success'>";
         while($listeMails->next()) {
             echo "Alerte envoyée à ".$listeMails->current();
+            //TODO: Envoyer un vrai mail.
         }
         echo "</div>";
     }
