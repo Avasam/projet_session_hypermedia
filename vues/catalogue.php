@@ -69,7 +69,7 @@
                     <p><?php echo html_entity_decode($produit->getDescription()); ?></p>
                 </div>
                 <div class="ratings row">
-                    <div class="col-xs-5 col-xl-6">
+                    <div class="col-xs-7 col-md-5 col-lg-6">
                         <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
                         <a href="#"><span class="glyphicon glyphicon-heart"></span></a>
                         <?php if (ISSET($_SESSION["connected"]["administrateur"]) && $_SESSION["connected"]["administrateur"]==true) { ?>
@@ -87,7 +87,7 @@
                                                                            ></span></a>
                         <?php } ?>
                     </div>
-                    <div class="col-xs-7 col-xl-6">
+                    <div class="col-xs-5 col-md-7 col-lg-6">
                         <?php if ($produit->getprix() != $produit->getPrixRabais()) { ?>
                         <span class="pull-right coupe"><?php echo $produit->getprix() ?>$</span>
                         <?php } ?>
