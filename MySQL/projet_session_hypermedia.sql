@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 23 Mai 2017 à 06:01
+-- Généré le :  Mar 18 Avril 2017 à 19:52
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -142,6 +142,8 @@ CREATE TABLE `produit` (
 -- RELATIONS POUR LA TABLE `produit`:
 --   `categorie`
 --       `categorie` -> `nom`
+--   `categorie`
+--       `categorie` -> `nom`
 --
 
 --
@@ -169,12 +171,15 @@ INSERT INTO `produit` (`no_produit`, `nom`, `prix`, `rabais_pct`, `rabais_abs`, 
 DROP TABLE IF EXISTS `produit_commande`;
 CREATE TABLE `produit_commande` (
   `no_commande` int(11) NOT NULL,
-  `no_produit` int(4) NOT NULL,
-  `quantite` int(3) NOT NULL DEFAULT '1'
+  `no_produit` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- RELATIONS POUR LA TABLE `produit_commande`:
+--   `no_commande`
+--       `commande` -> `no_commande`
+--   `no_produit`
+--       `produit` -> `no_produit`
 --   `no_commande`
 --       `commande` -> `no_commande`
 --   `no_produit`
@@ -190,12 +195,12 @@ TRUNCATE TABLE `produit_commande`;
 -- Contenu de la table `produit_commande`
 --
 
-INSERT INTO `produit_commande` (`no_commande`, `no_produit`, `quantite`) VALUES
-(1, 16, 1),
-(1, 19, 1),
-(2, 16, 1),
-(2, 17, 1),
-(2, 18, 1);
+INSERT INTO `produit_commande` (`no_commande`, `no_produit`) VALUES
+(1, 16),
+(2, 16),
+(2, 17),
+(2, 18),
+(1, 19);
 
 -- --------------------------------------------------------
 
