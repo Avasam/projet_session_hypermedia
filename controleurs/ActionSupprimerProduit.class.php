@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of SupprimerAction
+ * Description of ActionSupprimerProduit
  *
  * @author Amoumene Toudeft
  */

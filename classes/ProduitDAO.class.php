@@ -196,7 +196,22 @@ class ProduitDAO {
         }
         $pstmt->closeCursor();
         return NULL;
-}
+    }
+    
+    public static function findProduitCommandeQuantite($produit,$commande) {
+        $db = Database::getInstance();
+
+        $pstmt = $db->prepare("SELECT quantite FROM produit_commande WHERE no_produit = :p AND no_commande = :c");
+        $pstmt->execute(array(':p' => $produit, ':c' => $commande));
+
+        $result = $pstmt->fetch(PDO::FETCH_OBJ);
+        if ($result) {
+            $pstmt->closeCursor();
+            return $result->quantite;
+        }
+        $pstmt->closeCursor();
+        return NULL;
+    }
 
     public static function update($x) {
         $request = "UPDATE produit SET nom = '".$x->getNom().
@@ -206,7 +221,7 @@ class ProduitDAO {
         "', description = '".$x->getDescription().
         "', image = '".$x->getCheminImage().
         "', categorie = '".$x->getCategorie().
-        " WHERE no_produit = '".$x->getNoProduit()."'";
+        "' WHERE no_produit = '".$x->getNoProduit()."'";
         try {
             $db = Database::getInstance();
             return $db->exec($request);
@@ -225,15 +240,34 @@ class ProduitDAO {
         $pstmt->closeCursor();
     }
     
-    public function delete($x) {
-        $request = "DELETE FROM produit WHERE no_produit = '".$x->getNoProduit()."'";
-        try {
-            $db = Database::getInstance();
-            return $db->exec($request);
-        }
-        catch(PDOException $e) {
-            throw $e;
-        }
+    public static function deleteProduitCommande($produit, $commande) {
+        $db = Database::getInstance();
+
+        $pstmt = $db->prepare("DELETE FROM produit_commande WHERE no_produit = :p AND no_commande = :c");
+        $pstmt->execute(array(':p' => $produit, ':c' => $commande));
+
+        $pstmt->closeCursor();
     }
+    
+    public static function decrementproduitCommande($produit, $commande) {
+        $quantite = ProduitDAO::findProduitCommandeQuantite($produit,$commande)-1;
+        
+        $db = Database::getInstance();
+        
+        $pstmt = $db->prepare("UPDATE produit_commande SET quantite = :quant "
+                             ."WHERE no_produit = :p AND no_commande = :c");
+        $pstmt->execute(array(':quant' => $quantite, ':p' => $produit, ':c' => $commande));
+
+        $pstmt->closeCursor();
+    }
+    
+    public static function deleteFavoris($produit, $client) {
+        $db = Database::getInstance();
+
+        $pstmt = $db->prepare("DELETE FROM produit_favoris WHERE no_produit = :p AND no_client = :c");
+        $pstmt->execute(array(':p' => $produit, ':c' => $client));
+
+        $pstmt->closeCursor();
+    }
+    
 }
-?>

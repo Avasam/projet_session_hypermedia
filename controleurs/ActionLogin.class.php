@@ -28,6 +28,7 @@ class ActionLogin implements Action {
         $_SESSION["connected"]["id"] = $client->getNoClient();
         $_SESSION["connected"]["username"] = $client->getUsername();
         $_SESSION["connected"]["email"] = $client->getCourriel();
+        $_SESSION["connected"]["panier"] = $client->getNoPanier();
         return "main";
     }
 

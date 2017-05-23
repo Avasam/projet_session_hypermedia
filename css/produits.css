@@ -48,12 +48,6 @@ body {
     width: 100%;
 }
 
-.ratings {
-    padding-right: 10px;
-    padding-left: 10px;
-    color: #d17581;
-}
-
 .thumbnail {
     padding: 0;
 }
@@ -119,6 +113,16 @@ textarea {
 .coupe {
     color: red;
     text-decoration: line-through;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+.ratings>div>a {
+    padding-right: 10px;
 }
 
 #btnSupprimer,
