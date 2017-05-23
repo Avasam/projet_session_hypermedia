@@ -29,10 +29,10 @@
                                                         <?php if ($findAllFor=="findAllPanierFor") {
                                                             $quantite = ProduitDAO::findProduitCommandeQuantite($produit->getNoProduit(),$_SESSION["connected"]["panier"]);
                                                             for ($q=0; $q<$quantite; $q++) { ?>
-                                                                <a href="?action=decrementerPanier&&produitID=<?=$produit->getNoProduit()?>&commandeID=<?=$_SESSION["connected"]["panier"]?>"><span class="glyphicon glyphicon-remove"></span></a>
+                                                                <a href="?action=decrementerPanier&produitID=<?=$produit->getNoProduit()?>&commandeID=<?=$_SESSION["connected"]["panier"]?>&redirect=profil"><span class="glyphicon glyphicon-remove"></span></a>
                                                             <?php } 
                                                        } else {?>
-                                                            <a href="?action=supprimerFavoris&produitID=<?=$produit->getNoProduit()?>&clientID=<?=$_SESSION["connected"]["id"]?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                                            <a href="?action=supprimerFavoris&produitID=<?=$produit->getNoProduit()?>&clientID=<?=$_SESSION["connected"]["id"]?>&redirect=profil"><span class="glyphicon glyphicon-trash"></span></a>
                                                         <?php } ?>
                                                     </div>
                                                     <div class="col-xs-7 col-xl-6">

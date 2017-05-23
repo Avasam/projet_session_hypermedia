@@ -45,7 +45,12 @@ class Liste {
             return $this->items[$i];
         return null;	
     }
+    
     public function length() {
         return count($this->items);
-    }	
+    }
+    
+    public function asArray() {
+        return $this->items;
+    }
 }

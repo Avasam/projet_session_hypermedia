@@ -26,7 +26,7 @@ class ProduitDAO {
             throw $e;
         }
     }
-
+    
     public static function findAll() {
         $liste = new Liste();
         try {
@@ -130,7 +130,7 @@ class ProduitDAO {
                                 $result->nom,
                                 $result->prix,
                                 $result->rabais_pct,
-                                $result->rabais_pct,
+                                $result->rabais_abs,
                                 $result->description,
                                 $result->image,
                                 $result->categorie));
@@ -198,21 +198,6 @@ class ProduitDAO {
         return NULL;
     }
     
-    public static function findProduitCommandeQuantite($produit,$commande) {
-        $db = Database::getInstance();
-
-        $pstmt = $db->prepare("SELECT quantite FROM produit_commande WHERE no_produit = :p AND no_commande = :c");
-        $pstmt->execute(array(':p' => $produit, ':c' => $commande));
-
-        $result = $pstmt->fetch(PDO::FETCH_OBJ);
-        if ($result) {
-            $pstmt->closeCursor();
-            return $result->quantite;
-        }
-        $pstmt->closeCursor();
-        return NULL;
-    }
-
     public static function update($x) {
         $request = "UPDATE produit SET nom = '".$x->getNom().
         "', prix = '".$x->getPrix().
@@ -240,6 +225,55 @@ class ProduitDAO {
         $pstmt->closeCursor();
     }
     
+    public static function findProduitCommandeQuantite($produit,$commande) {
+        $db = Database::getInstance();
+
+        $pstmt = $db->prepare("SELECT quantite FROM produit_commande WHERE no_produit = :p AND no_commande = :c");
+        $pstmt->execute(array(':p' => $produit, ':c' => $commande));
+
+        $result = $pstmt->fetch(PDO::FETCH_OBJ);
+        if ($result) {
+            $pstmt->closeCursor();
+            return $result->quantite;
+        }
+        $pstmt->closeCursor();
+        return NULL;
+    }
+
+    public static function createFavoris($produit, $client) {
+        $db = Database::getInstance();
+        
+        $pstmt = $db->prepare("INSERT INTO produit_favoris (no_client,no_produit) VALUES (:c,:p)");
+        $pstmt->execute(array(':p' => $produit, ':c' => $client));
+        
+        $pstmt->closeCursor();
+    }
+
+    public static function createProduitCommande($produit, $commande) {
+        $db = Database::getInstance();
+
+        $pstmt = $db->prepare("INSERT INTO produit_commande (no_commande, no_produit) VALUES (:c,:p");
+        $pstmt->execute(array(':p' => $produit, ':c' => $commande));
+
+        $pstmt->closeCursor();
+    }
+    
+    public static function incrementproduitCommande($produit, $commande) {
+        $quantite = ProduitDAO::findProduitCommandeQuantite($produit,$commande)+1;
+        if ($quantite<=0) {
+            ProduitDAO::createProduitCommande($produit, $commande);
+            return;
+        }
+        
+        $db = Database::getInstance();
+        
+        $pstmt = $db->prepare("UPDATE produit_commande SET quantite = :q "
+                             ."WHERE no_produit = :p AND no_commande = :c");
+        $pstmt->execute(array(':q' => $quantite, ':p' => $produit, ':c' => $commande));
+
+        $pstmt->closeCursor();
+    }
+    
     public static function deleteProduitCommande($produit, $commande) {
         $db = Database::getInstance();
 
@@ -258,9 +292,9 @@ class ProduitDAO {
         
         $db = Database::getInstance();
         
-        $pstmt = $db->prepare("UPDATE produit_commande SET quantite = :quant "
+        $pstmt = $db->prepare("UPDATE produit_commande SET quantite = :q "
                              ."WHERE no_produit = :p AND no_commande = :c");
-        $pstmt->execute(array(':quant' => $quantite, ':p' => $produit, ':c' => $commande));
+        $pstmt->execute(array(':q' => $quantite, ':p' => $produit, ':c' => $commande));
 
         $pstmt->closeCursor();
     }

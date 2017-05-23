@@ -1,14 +1,14 @@
 <?php
 /**
- * Description of ActionSupprimerFavoris
+ * Description of ActionIncrementerPanier
  *
  * @author Samuel Therrien
  */
 require_once('/controleurs/Action.interface.php');
 require_once('/classes/ProduitDAO.class.php');
-class ActionSupprimerFavoris implements Action {
+class ActionIncrementerPanier implements Action {
     public function execute(){
-        ProduitDAO::deleteFavoris($_REQUEST["produitID"], $_REQUEST["clientID"]);
+        ProduitDAO::incrementProduitCommande($_REQUEST["produitID"], $_REQUEST["commandeID"]);
         return $_REQUEST["redirect"];
     }
 }

@@ -7,6 +7,7 @@
 require_once('/controleurs/Action.interface.php');
 class ActionProfil implements Action {
     public function execute(){
-        return "profil";
+        if (ISSET($_SESSION["connected"])) return "profil";
+        else return "main";
     }
 }

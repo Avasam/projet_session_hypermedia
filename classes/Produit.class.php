@@ -5,7 +5,7 @@
  * @author Samuel Therrien
  */
 class Produit {
-    private $noProduit = 0 ;
+    private $noProduit = null ;
     private $nom = "";
     private $prix = 0.00;
     private $rabaisPct = 0;
@@ -62,7 +62,7 @@ class Produit {
     }
 
     function setNoProduit($noProduit) {
-        $this->nom = $noProduit;
+        $this->noProduit = $noProduit;
     }
     
     function setNom($nom) {

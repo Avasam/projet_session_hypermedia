@@ -145,3 +145,12 @@ img.img-responsive {
     max-height: 352px;
     width: auto;
 }
+
+.glyphicon-heart,
+.glyphicon-heart-empty {
+    color: red;
+}
+
+.glyphicon-shopping-cart {
+    color: green;
+}

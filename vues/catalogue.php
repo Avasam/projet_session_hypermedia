@@ -58,6 +58,8 @@
     } else {
         $listeProduits = ProduitDAO::findAll();
     }
+    if (ISSET($_SESSION["connected"])) 
+        $listeFavoris = ProduitDAO::findAllFavorisFor($_SESSION["connected"]["id"])->asArray();
     while ($listeProduits->next()) {
         $produit = $listeProduits->current();
         ?>
@@ -70,8 +72,14 @@
                 </div>
                 <div class="ratings row">
                     <div class="col-xs-7 col-md-5 col-lg-6">
-                        <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-heart"></span></a>
+                        <?php if (ISSET($_SESSION["connected"])) { ?>
+                            <a href="?action=incrementerPanier&produitID=<?=$produit->getNoProduit()?>&commandeID=<?=$_SESSION["connected"]["panier"]?>&redirect=main"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                            <?php if (in_array($produit, $listeFavoris)) { ?>
+                            <a href="?action=supprimerFavoris&produitID=<?=$produit->getNoProduit()?>&clientID=<?=$_SESSION["connected"]["id"]?>&redirect=main"><span class="glyphicon glyphicon-heart"></span></a>
+                            <?php } else { ?>
+                            <a href="?action=ajouterFavoris&produitID=<?=$produit->getNoProduit()?>&clientID=<?=$_SESSION["connected"]["id"]?>&redirect=main"><span class="glyphicon glyphicon-heart-empty"></span></a>
+                            <?php } ?>
+                        <?php } ?>
                         <?php if (ISSET($_SESSION["connected"]["administrateur"]) && $_SESSION["connected"]["administrateur"]==true) { ?>
                         <a href="#"><span class="glyphicon glyphicon-edit" data-toggle="modal"
                                                                            data-target="#produitModal"

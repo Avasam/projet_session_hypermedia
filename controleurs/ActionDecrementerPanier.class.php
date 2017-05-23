@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of ActionSupprimerPanier
+ * Description of ActionDecrementerPanier
  *
  * @author Samuel Therrien
  */

@@ -15,6 +15,8 @@ require_once('/controleurs/ActionAbout.class.php');
 require_once('/controleurs/ActionProfil.class.php');
 require_once('/controleurs/ActionDecrementerPanier.class.php');
 require_once('/controleurs/ActionSupprimerFavoris.class.php');
+require_once('/controleurs/ActionIncrementerPanier.class.php');
+require_once('/controleurs/ActionAjouterFavoris.class.php');
 
 class ActionBuilder{
     public static function getAction($nom){
@@ -48,6 +50,12 @@ class ActionBuilder{
                 break;
             case "supprimerFavoris" :
                 return new ActionSupprimerFavoris();
+                break;
+            case "incrementerPanier" :
+                return new ActionIncrementerPanier();
+                break;
+            case "ajouterFavoris" :
+                return new ActionAjouterFavoris();
                 break;
             default :
                 return new ActionDefault();
