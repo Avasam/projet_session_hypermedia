@@ -140,3 +140,8 @@ textarea {
     height: 200px;
     width: auto;
 }
+
+img.img-responsive {
+    max-height: 352px;
+    width: auto;
+}
