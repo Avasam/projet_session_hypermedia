@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of SupprimerAction
+ * Description of ActionAjouterProduit
  *
  * @author Samuel Therrien
  */

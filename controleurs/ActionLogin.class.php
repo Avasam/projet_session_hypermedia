@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of LoginAction
+ * Description of ActionLogin
  *
  * @author Amoumene Toudeft
  */
@@ -28,6 +28,7 @@ class ActionLogin implements Action {
         $_SESSION["connected"]["id"] = $client->getNoClient();
         $_SESSION["connected"]["username"] = $client->getUsername();
         $_SESSION["connected"]["email"] = $client->getCourriel();
+        $_SESSION["connected"]["administrateur"] = $client->isAdministrateur();
         $_SESSION["connected"]["panier"] = $client->getNoPanier();
         return "main";
     }

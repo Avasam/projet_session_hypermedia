@@ -18,7 +18,10 @@
                 <div class="item <?php echo($i==0 ? "active" : "") ?>">
                     <a href="?produit=<?php echo $produit->getNoProduit() ?>"><img class="slide-image" src="<?php echo $produit->getCheminImage() ?>" alt="<?php echo $produit->getCheminImage() ?>"></a>
                     <span class="carousel-info-nom"><span><?php echo $produit->getNom() ?></span></span>
-                    <span class="carousel-info-prix"><span class="pull-right coupe"><?php echo $produit->getprix() ?>$</span><span class="pull-right rabais"><?php echo $produit->getPrixRabais() ?>$&nbsp;</span></span>
+                    <span class="carousel-info-prix">
+                        <span class="pull-right coupe"><?php echo $produit->getprix() ?>$</span>
+                        <span class="pull-right rabais"><?php echo $produit->getPrixRabais() ?>$&nbsp;</span>
+                    </span>
                 </div>
                 <?php } ?>
             </div>
@@ -36,10 +39,11 @@
 
 
 <div class="row">
-    
+    <?php if (ISSET($_SESSION["connected"]["administrateur"]) && $_SESSION["connected"]["administrateur"]==true) { ?>
     <div class="col-sm-4 col-lg-4 col-md-4">
         <button type="button" class="btn btn-primary btn-add-product" data-toggle="modal" data-target="#produitModal" data-action="Ajouter"><div class="glyphicon glyphicon-plus"></div></button>
     </div>
+    <?php } ?>
 
     <?php
     if (ISSET($_REQUEST['categorie'])) {
@@ -61,9 +65,14 @@
             <div class="thumbnail">
                 <a href="?produit=<?php echo $produit->getNoProduit() ?>"><img src='<?php echo $produit->getCheminImage() ?>' alt="<?php echo $produit->getCheminImage() ?>"></a>
                 <div class="caption">
-                    <h4 class="pull-right"><?php echo number_format((float)$produit->getPrixRabais(),2,'.',''); ?>$</h4>
-                    <h4>
-                        <a href="?produit=<?php echo $produit->getNoProduit() ?>"><?php echo $produit->getNom() ?></a>
+                    <h4><a href="?produit=<?php echo $produit->getNoProduit() ?>"><?php echo $produit->getNom() ?></a></h4>
+                    <p><?php echo html_entity_decode($produit->getDescription()); ?></p>
+                </div>
+                <div class="ratings row">
+                    <div class="col-xs-5 col-xl-6">
+                        <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                        <a href="#"><span class="glyphicon glyphicon-heart"></span></a>
+                        <?php if (ISSET($_SESSION["connected"]["administrateur"]) && $_SESSION["connected"]["administrateur"]==true) { ?>
                         <a href="#"><span class="glyphicon glyphicon-edit" data-toggle="modal"
                                                                            data-target="#produitModal"
                                                                            data-action="Modifier"
@@ -75,19 +84,15 @@
                                                                            data-description="<?php echo $produit->getdescription() ?>"
                                                                            data-chemin-image="<?php echo $produit->getCheminImage() ?>"
                                                                            data-categorie="<?php echo $produit->getCategorie() ?>"
-                         ></span></a>
-                    </h4>
-                    <p><?php echo html_entity_decode($produit->getDescription()); ?></p>
-                </div>
-                <div class="ratings">
-                    <p class="pull-right">31 reviews</p>
-                    <p>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    </p>
+                                                                           ></span></a>
+                        <?php } ?>
+                    </div>
+                    <div class="col-xs-7 col-xl-6">
+                        <?php if ($produit->getprix() != $produit->getPrixRabais()) { ?>
+                        <span class="pull-right coupe"><?php echo $produit->getprix() ?>$</span>
+                        <?php } ?>
+                        <span class="pull-right rabais"><?php echo $produit->getPrixRabais() ?>$&nbsp;</span>
+                    </div>
                 </div>
             </div>
         </div>

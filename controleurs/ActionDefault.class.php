@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of DefaultAction
+ * Description of ActionDefault
  *
  * @author Amoumene Toudeft
  */

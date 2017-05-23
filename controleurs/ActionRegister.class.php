@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of LoginAction
+ * Description of ActionRegister
  *
  * @author Amoumene Toudeft
  */
