@@ -22,10 +22,10 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php if (ISSET($_SESSION["connected"])) {
-                    echo "<li><a href='?action=profil&username=".$_SESSION["connected"]."'>".$_SESSION["connected"]."</a></li>";
-                    echo "<li><a href='?action=logout'>Se déconnecter</a></li>";
+                    echo "<li><a href='?action=profil'>".$_SESSION["connected"]["username"]."</a></li>";
+                    echo "<li><a href='?action=logout'>Déconnexion</a></li>";
                 } else {
-                    echo "<li><a href='#'><span data-toggle='modal' data-target='#loginModal'>Se connecter/S'enregistrer</span></a></li>";
+                    echo "<li><a href='#'><span data-toggle='modal' data-target='#loginModal'>Connexion/S'enregistrer</span></a></li>";
                 } ?>
             </ul>
         </div>

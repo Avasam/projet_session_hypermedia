@@ -9,12 +9,11 @@ include_once('/classes/Client.class.php');
 
 class ClientDAO {
     public static function create($x) {
-        $administrateur = ($x->isAdministrateur()===true ? 1 : 0);
         $request = "INSERT INTO client (nom,courriel,mot_de_passe,administrateur)".
                     " VALUES ('".$x->getUsername().
                     "','".$x->getCourriel().
                     "','".$x->getPassword().
-                    "','".$administrateur.
+                    "','".($x->isAdministrateur()===true ? 1 : 0).
                     "')";
         try {
             $db = Database::getInstance();
@@ -36,13 +35,15 @@ class ClientDAO {
             $pstmt->execute(array(':x' => $x));
 
             $result = $pstmt->fetch(PDO::FETCH_OBJ);
-            $p = new Client();
 
             if ($result) {
-                $p->setUsername($result->nom);
-                $p->setPassword($result->mot_de_passe);
                 $pstmt->closeCursor();
-                return $p;
+                return new Client($result->no_client,
+                                  $result->nom,
+                                  $result->courriel,
+                                  $result->mot_de_passe,
+                                  $result->administrateur,
+                                  $result->panier);
             }
             $pstmt->closeCursor();
             return null;

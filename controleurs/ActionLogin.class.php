@@ -15,8 +15,7 @@ class ActionLogin implements Action {
         }
 
         require_once('/classes/ClientDAO.class.php');
-        $cdao = new ClientDAO();
-        $client = $cdao->findBy("nom", $_REQUEST["username"]);
+        $client = ClientDAO::findBy("nom", $_REQUEST["username"]);
         if ($client == null) {
             $_REQUEST["field_messages"]["username"] = "Utilisateur '".$_REQUEST["username"]."' inexistant.";	
             return "main";
@@ -26,7 +25,9 @@ class ActionLogin implements Action {
         }
         
         if (!ISSET($_SESSION)) session_start();
-        $_SESSION["connected"] = $_REQUEST["username"];
+        $_SESSION["connected"]["id"] = $client->getNoClient();
+        $_SESSION["connected"]["username"] = $client->getUsername();
+        $_SESSION["connected"]["email"] = $client->getCourriel();
         return "main";
     }
 

@@ -117,6 +117,63 @@ class ProduitDAO {
         }
     }
     
+    public static function findAllFavorisFor($x) {
+        $liste = new Liste();
+        try {
+            $db = Database::getInstance();
+            $pstmt = $db->prepare("SELECT * FROM produit p "
+                                 ."INNER JOIN produit_favoris f ON p.no_produit=f.no_produit "
+                                 ."WHERE f.no_client = :x");
+            $pstmt->execute(array(':x' => $x));
+            while ($result=$pstmt->fetch(PDO::FETCH_OBJ)) {
+                $liste->add(new Produit($result->no_produit,
+                                $result->nom,
+                                $result->prix,
+                                $result->rabais_pct,
+                                $result->rabais_pct,
+                                $result->description,
+                                $result->image,
+                                $result->categorie));
+            }
+            $pstmt->closeCursor();
+            Database::close();
+            return $liste;
+        } catch (PDOException $e) {
+            print "Error!: ".$e->getMessage()."<br/>";
+            return $liste;
+        }	
+    }
+    
+    public static function findAllPanierFor($x) {
+        $liste = new Liste();
+        try {
+            $db = Database::getInstance();
+            $pstmt = $db->prepare("SELECT p.no_produit,p.nom,p.prix,p.rabais_pct,p.rabais_pct,p.description,p.image,p.categorie "
+                                 ."FROM produit p "
+                                 ."INNER JOIN produit_commande pc ON p.no_produit=pc.no_produit "
+                                 ."INNER JOIN client u ON pc.no_commande=u.panier "
+                                 ."WHERE u.no_client = :x");
+            $pstmt->execute(array(':x' => $x));
+            
+            while ($result=$pstmt->fetch(PDO::FETCH_OBJ)) {
+                $liste->add(new Produit($result->no_produit,
+                                $result->nom,
+                                $result->prix,
+                                $result->rabais_pct,
+                                $result->rabais_pct,
+                                $result->description,
+                                $result->image,
+                                $result->categorie));
+            }
+            $pstmt->closeCursor();
+            Database::close();
+            return $liste;
+        } catch (PDOException $e) {
+            print "Error!: ".$e->getMessage()."<br/>";
+            return $liste;
+        }	
+    }
+    
     public static function find($id) {
         $db = Database::getInstance();
 

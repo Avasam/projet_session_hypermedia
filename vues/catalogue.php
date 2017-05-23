@@ -57,7 +57,7 @@
     while ($listeProduits->next()) {
         $produit = $listeProduits->current();
         ?>
-        <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="col-sm-4">
             <div class="thumbnail">
                 <a href="?produit=<?php echo $produit->getNoProduit() ?>"><img src='<?php echo $produit->getCheminImage() ?>' alt="<?php echo $produit->getCheminImage() ?>"></a>
                 <div class="caption">
