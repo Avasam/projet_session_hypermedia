@@ -1,5 +1,4 @@
 <?php
-include_once('/classes/Commande.class.php'); 
 /**
  * Description of Client
  *

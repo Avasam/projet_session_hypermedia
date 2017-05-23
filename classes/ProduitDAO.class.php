@@ -249,18 +249,36 @@ class ProduitDAO {
         $pstmt->closeCursor();
     }
 
+    public static function createCommande($client) {
+        $db = Database::getInstance();
+
+        $pstmt = $db->prepare("INSERT INTO commande(paiement) VALUES (null);SELECT LAST_INSERT_ID()");
+        $pstmt->execute();
+        
+        $pstmt = $db->prepare("SELECT LAST_INSERT_ID() AS last_insert_id");
+        $pstmt->execute();
+        $panier = $pstmt->fetch(PDO::FETCH_OBJ)->last_insert_id;
+
+        $pstmt = $db->prepare("UPDATE client SET panier = :p WHERE no_client = :c ");
+        $pstmt->execute(array(':p' => $panier, ':c' => $client));
+        $pstmt->closeCursor();
+        $_SESSION["connected"]["panier"]=$panier;
+        return NULL;
+    }
+    
     public static function createProduitCommande($produit, $commande) {
         $db = Database::getInstance();
 
-        $pstmt = $db->prepare("INSERT INTO produit_commande (no_commande, no_produit) VALUES (:c,:p");
+        $pstmt = $db->prepare("INSERT INTO produit_commande (no_commande, no_produit) VALUES (:c,:p)");
         $pstmt->execute(array(':p' => $produit, ':c' => $commande));
 
         $pstmt->closeCursor();
     }
     
-    public static function incrementproduitCommande($produit, $commande) {
-        $quantite = ProduitDAO::findProduitCommandeQuantite($produit,$commande)+1;
-        if ($quantite<=0) {
+    public static function incrementproduitCommande($produit, $commande) {        
+        $quantite = ProduitDAO::findProduitCommandeQuantite($produit,$commande);
+        var_dump($quantite);
+        if ($quantite<=0 or $quantite==null) {
             ProduitDAO::createProduitCommande($produit, $commande);
             return;
         }
@@ -269,7 +287,7 @@ class ProduitDAO {
         
         $pstmt = $db->prepare("UPDATE produit_commande SET quantite = :q "
                              ."WHERE no_produit = :p AND no_commande = :c");
-        $pstmt->execute(array(':q' => $quantite, ':p' => $produit, ':c' => $commande));
+        $pstmt->execute(array(':q' => $quantite+1, ':p' => $produit, ':c' => $commande));
 
         $pstmt->closeCursor();
     }

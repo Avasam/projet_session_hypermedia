@@ -122,8 +122,8 @@ textarea {
     font-size: 18px;
 }
 
-.ratings>div>a {
-    padding-right: 10px;
+.ratings>div>a+a {
+    padding-left: 10px;
 }
 
 #btnSupprimer,

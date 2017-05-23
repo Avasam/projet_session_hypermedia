@@ -13,7 +13,9 @@ if (ISSET($_SESSION["connected"]))
     <div class="ratings row">
         <div class="col-xs-7 col-md-5 col-lg-6">
             <?php if (ISSET($_SESSION["connected"])) { ?>
-                <a href="?action=incrementerPanier&produitID=<?=$produit->getNoProduit()?>&commandeID=<?=$_SESSION["connected"]["panier"]?>&redirect=main&produit=<?=$produit->getNoProduit()?>"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                    <a href="?action=incrementerPanier&produitID=<?=$produit->getNoProduit()?>&commandeID=<?=$_SESSION["connected"]["panier"]?>&redirect=main&produit=<?=$produit->getNoProduit()?>"><span class="glyphicon glyphicon-shopping-cart"><?php
+                    if(($quantite=ProduitDAO::findProduitCommandeQuantite($produit->getNoProduit(),$_SESSION["connected"]["panier"]))>0)
+                                            echo "&times".$quantite ?></span></a>
                 <?php if (in_array($produit, $listeFavoris)) { ?>
                 <a href="?action=supprimerFavoris&produitID=<?=$produit->getNoProduit()?>&clientID=<?=$_SESSION["connected"]["id"]?>&redirect=main&produit=<?=$produit->getNoProduit()?>"><span class="glyphicon glyphicon-heart"></span></a>
                 <?php } else { ?>
