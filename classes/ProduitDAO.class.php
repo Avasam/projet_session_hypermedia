@@ -277,7 +277,6 @@ class ProduitDAO {
     
     public static function incrementproduitCommande($produit, $commande) {        
         $quantite = ProduitDAO::findProduitCommandeQuantite($produit,$commande);
-        var_dump($quantite);
         if ($quantite<=0 or $quantite==null) {
             ProduitDAO::createProduitCommande($produit, $commande);
             return;

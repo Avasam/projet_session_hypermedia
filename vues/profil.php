@@ -5,7 +5,7 @@
             <?php $f = ['findAllPanierFor', 'findAllfavorisFor'];
             foreach ($f as $findAllFor) { ?>
                 <div class="col-md-6">
-                    <div class="panel panel-info">
+                    <div class="panel panel-<?php echo ($findAllFor=="findAllPanierFor" ? "success" : "danger") ?>">
                         <div class="panel-heading"><h4><?php echo ($findAllFor=="findAllPanierFor" ? "Mon panier" : "Mes favoris") ?></h4></div>
                         <div class="panel-body">
                             <div class="row">
