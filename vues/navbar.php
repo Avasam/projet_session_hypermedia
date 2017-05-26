@@ -17,7 +17,7 @@
                     <a href="?action=about">À propos</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="https://github.com/Avasam">Mon Github</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
