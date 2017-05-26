@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 23 Mai 2017 à 06:14
+-- Généré le :  Ven 26 Mai 2017 à 00:44
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -23,39 +23,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `categorie`
---
-
-DROP TABLE IF EXISTS `categorie`;
-CREATE TABLE `categorie` (
-  `nom` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS POUR LA TABLE `categorie`:
---
-
---
--- Vider la table avant d'insérer `categorie`
---
-
-TRUNCATE TABLE `categorie`;
---
--- Contenu de la table `categorie`
---
-
-INSERT INTO `categorie` (`nom`) VALUES
-('Boissons'),
-('Fruits et légumes'),
-('Pain et céréales'),
-('Pâtes'),
-('Produits laitiers'),
-('Sucreries et collations'),
-('Viandes');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `client`
 --
 
@@ -71,8 +38,6 @@ CREATE TABLE `client` (
 
 --
 -- RELATIONS POUR LA TABLE `client`:
---   `panier`
---       `commande` -> `no_commande`
 --   `panier`
 --       `commande` -> `no_commande`
 --
@@ -140,8 +105,6 @@ CREATE TABLE `produit` (
 
 --
 -- RELATIONS POUR LA TABLE `produit`:
---   `categorie`
---       `categorie` -> `nom`
 --
 
 --
@@ -215,10 +178,6 @@ CREATE TABLE `produit_favoris` (
 --       `client` -> `no_client`
 --   `no_produit`
 --       `produit` -> `no_produit`
---   `no_client`
---       `client` -> `no_client`
---   `no_produit`
---       `produit` -> `no_produit`
 --
 
 --
@@ -239,12 +198,6 @@ INSERT INTO `produit_favoris` (`no_client`, `no_produit`) VALUES
 --
 
 --
--- Index pour la table `categorie`
---
-ALTER TABLE `categorie`
-  ADD PRIMARY KEY (`nom`);
-
---
 -- Index pour la table `client`
 --
 ALTER TABLE `client`
@@ -261,8 +214,7 @@ ALTER TABLE `commande`
 -- Index pour la table `produit`
 --
 ALTER TABLE `produit`
-  ADD PRIMARY KEY (`no_produit`),
-  ADD KEY `categorie` (`categorie`);
+  ADD PRIMARY KEY (`no_produit`);
 
 --
 -- Index pour la table `produit_commande`
@@ -306,12 +258,6 @@ ALTER TABLE `produit`
 --
 ALTER TABLE `client`
   ADD CONSTRAINT `client_fk1` FOREIGN KEY (`panier`) REFERENCES `commande` (`no_commande`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `produit`
---
-ALTER TABLE `produit`
-  ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`categorie`) REFERENCES `categorie` (`nom`);
 
 --
 -- Contraintes pour la table `produit_commande`
